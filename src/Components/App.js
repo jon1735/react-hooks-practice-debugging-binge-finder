@@ -21,7 +21,7 @@ function App() {
   });
 
   function handleSearch(e) {
-    setSearchTerm(e.target.value.toLowerCase());
+    setSearchTerm(e.target.value);
   }
 
   function handleFilter(e) {
@@ -37,26 +37,34 @@ function App() {
     });
   }
 
-  let displayShows = shows;
+  // let displayShows = shows;
+  // if (filterByRating) {
+  //   displayShows = displayShows.filter((s) => {
+  //     return s.rating.average >= filterByRating;
+  //   });
+  // }
+
+const displayShows = shows.filter(s => {
   if (filterByRating) {
-    displayShows = displayShows.filter((s) => {
-      return s.rating.average >= filterByRating;
-    });
+    return s.rating.average >= filterByRating 
+  } else {
+    return true
   }
+})
 
   return (
     <div>
       <Nav
         handleFilter={handleFilter}
         handleSearch={handleSearch}
-        searchTerm={searchTerm}
+        search={searchTerm}
       />
       <Grid celled>
         <Grid.Column width={5}>
           {!!selectedShow ? (
             <SelectedShowContainer
               selectedShow={selectedShow}
-              allEpisodes={episodes}
+              episodes={episodes}
             />
           ) : (
             <div />

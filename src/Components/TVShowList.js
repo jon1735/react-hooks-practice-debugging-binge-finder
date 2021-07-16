@@ -5,15 +5,17 @@ import TVShow from "./TVShow"
 function TVShowList(props) {
   function mapAllShows() {
     if (!!props.searchTerm) {
-      props.shows.map((s) => {
-        if (s.name.toLowerCase().includes(props.searchTerm)) {
-          <TVShow show={s} key={s.id} selectShow={props.selectShow} image={s.image}/>;
-        }
-      });
-    }
+      const filteredShows = props.shows.filter((s) => {
+        return s.name.toLowerCase().includes(props.searchTerm)
+        });
+        return filteredShows.map(s => (
+          <TVShow show={s} key={s.id} selectShow={props.selectShow} image={s.image}/>
+        ))
+    } else {
     return props.shows.map((s) => (
       <TVShow show={s} key={s.id} selectShow={props.selectShow} image={s.image}/>
     ));
+    }
   }
 
   return (
