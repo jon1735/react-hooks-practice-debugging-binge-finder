@@ -21,7 +21,7 @@ function App() {
   });
 
   function handleSearch(e) {
-    setSearchTerm(e.target.value);
+    setSearchTerm(e.target.value.toLowerCase());
   }
 
   function handleFilter(e) {
@@ -37,27 +37,19 @@ function App() {
     });
   }
 
-  // let displayShows = shows;
-  // if (filterByRating) {
-  //   displayShows = displayShows.filter((s) => {
-  //     return s.rating.average >= filterByRating;
-  //   });
-  // }
-
-const displayShows = shows.filter(s => {
+  let displayShows = shows;
   if (filterByRating) {
-    return s.rating.average >= filterByRating 
-  } else {
-    return true
+    displayShows = displayShows.filter((s) => {
+      return s.rating.average >= filterByRating;
+    });
   }
-})
 
   return (
     <div>
       <Nav
         handleFilter={handleFilter}
         handleSearch={handleSearch}
-        search={searchTerm}
+        searchTerm={searchTerm}
       />
       <Grid celled>
         <Grid.Column width={5}>
