@@ -1,18 +1,18 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import TVShow from "./TVShow"
+import TVShow from "./TVShow";
 
 function TVShowList(props) {
   function mapAllShows() {
     if (!!props.searchTerm) {
-      props.shows.map((s) => {
-        if (s.name.toLowerCase().includes(props.searchTerm)) {
-          <TVShow show={s} key={s.id} selectShow={props.selectShow} image={s.image}/>;
-        }
-      });
+      return props.shows
+        .filter((s) => s.name.toLowerCase().includes(props.searchTerm))
+        .map((s) => {
+          return <TVShow show={s} key={s.id} selectShow={props.selectShow} />;
+        });
     }
     return props.shows.map((s) => (
-      <TVShow show={s} key={s.id} selectShow={props.selectShow} image={s.image}/>
+      <TVShow show={s} key={s.id} selectShow={props.selectShow} />
     ));
   }
 
