@@ -3,7 +3,7 @@ import Search from "./Search";
 import Filter from "./Filter";
 import { Menu } from "semantic-ui-react";
 
-function Nav() {
+function Nav(props) {
   return (
     <div>
       <Menu attached="top" inverted>
@@ -20,6 +20,8 @@ function Nav() {
           <search handleSearch={props.handleSearch} search={props.search} />
         </Menu.Item>
       </Menu>
+      <Search />
+      <Filter />
     </div>
   );
 }
